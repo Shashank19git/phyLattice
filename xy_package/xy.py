@@ -1,9 +1,9 @@
 from os import path, makedirs
-from utils import np
-from utils import plt
+from phyLattice.xy_package.utils import np
+from phyLattice.xy_package.utils import plt
 from torch import randn, pi, sum, cos, roll, exp
-from MC_updates import monte_carlo_step
-from observables import compute_energy , correlation
+from phyLattice.xy_package.MC_updates import monte_carlo_step
+from phyLattice.xy_package.observables import compute_energy , correlation
 
 
 def energy(L ,T, J, n_steps):
