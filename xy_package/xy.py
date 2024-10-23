@@ -10,8 +10,8 @@ def energy(L ,T, J, n_steps, plot=False):
     spins = 2 * pi * randn(L, L) - pi
     energies = []
     for step in range(n_steps):
-        if step%100==0:
-            print(step)
+        #if step%100==0:
+        #    print(step)
         spins = monte_carlo_step(spins,L, T, J)# Collect data
         #print(compute_energy(spins, L, T, J))
         energies.append(compute_energy(spins, L, T, J))
