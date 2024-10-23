@@ -6,24 +6,26 @@ from phyLattice.xy_package.MC_updates import monte_carlo_step
 from phyLattice.xy_package.observables import compute_energy , correlation
 
 
-def energy(L ,T, J, n_steps):
+def energy(L ,T, J, n_steps, plot=False):
     spins = 2 * pi * randn(L, L) - pi
     energies = []
     for step in range(n_steps):
-        if step%10==0:
+        if step%100==0:
             print(step)
         spins = monte_carlo_step(spins,L, T, J)# Collect data
         #print(compute_energy(spins, L, T, J))
         energies.append(compute_energy(spins, L, T, J))
+    if plot:
 
 # Plotting the results
-    plt.figure(figsize=(8, 6))
-    plt.plot(np.linspace(0,1,n_steps),energies)
-    plt.xlabel('MC_time')
-    plt.ylabel('Energy')
-    plt.title('Energy vs MC_time')
-    plt.show()
-
+        plt.figure(figsize=(8, 6))
+        plt.plot(np.linspace(0,1,n_steps),energies)
+        plt.xlabel('MC_time')
+        plt.ylabel('Energy')
+        plt.title('Energy vs MC_time')
+        plt.show()
+    return compute_energy(spins, L, T, J)
+    
 
 def autocorrelation(L, T, J, n_steps, lag):
     spins = 2 * pi * randn(L, L) - pi
