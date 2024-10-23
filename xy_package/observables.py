@@ -21,13 +21,6 @@ def compute_energy(spins, L, T, J):
 def compute_energy(spins, L, T, J):
     return -(J/2)*sum(cos(spins-roll(spins, 1, 0)) + cos(spins-roll(spins, 1, 1)) + cos(spins-roll(spins, -1, 0)) + cos(spins-roll(spins, -1, 1))) #energy
 
-# Function to compute specific heat
-def specific_heat(energies, L, T, J):
-    import numpy as np
-    E_mean = np.mean(energies)
-    E_squared_mean = np.mean(np.array(energies)**2)
-    C_v = (E_squared_mean - E_mean**2) / (T**2)
-    return C_v
 
 # auto correlation
 def correlation(configs):
