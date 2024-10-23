@@ -1,8 +1,8 @@
 from torch import rand, pi, mean, cos, roll, exp, where, logical_or
 
 
-def monte_carlo_step(spins, L, T, J):
-    theta_new = spins - pi + 2*pi*rand(L, L)
+def monte_carlo_step(spins, L, T, J, MC_step_size):
+    theta_new = spins + MC_step_size*(2*pi*rand(L, L) - pi)
     delta_E = -J*((cos(theta_new-roll(spins, 1, 0)) + cos(theta_new-roll(spins, 1, 1)) + cos(theta_new-roll(spins, -1, 0)) + cos(theta_new-roll(spins, -1, 1))) - (cos(spins-roll(spins, 1, 0)) + cos(spins-roll(spins, 1, 1)) + cos(spins-roll(spins, -1, 0)) + cos(spins-roll(spins, -1, 1))))
     random_values = rand(L,L)
     return where(logical_or(delta_E < 0, random_values < exp(-delta_E/T)), theta_new, spins)
