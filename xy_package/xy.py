@@ -6,13 +6,13 @@ from phyLattice.xy_package.MC_updates import monte_carlo_step
 from phyLattice.xy_package.observables import compute_energy , correlation
 
 
-def energy(L ,T, J, n_steps, plot=False):
+def energy(L ,T, J, n_steps, plot=False, MC_step_size=1):
     spins = 2 * pi * randn(L, L) - pi
     energies = []
     for step in range(n_steps):
         #if step%100==0:
         #    print(step)
-        spins = monte_carlo_step(spins,L, T, J)# Collect data
+        spins = monte_carlo_step(spins,L, T, J, MC_step_size)# Collect data
         #print(compute_energy(spins, L, T, J))
         energies.append(compute_energy(spins, L, T, J))
     if plot:
@@ -27,12 +27,12 @@ def energy(L ,T, J, n_steps, plot=False):
     return compute_energy(spins, L, T, J)
     
 
-def autocorrelation(L, T, J, n_steps, lag):
+def autocorrelation(L, T, J, n_steps, lag, MC_step_size=1):
     spins = 2 * pi * randn(L, L) - pi
     configs=[]
     Autocorrelations=[]
     for steps in range(n_steps):
-        spins = monte_carlo_step(spins,L, T, J)
+        spins = monte_carlo_step(spins,L, T, J, MC_step_size)
         configs.append(spins)
         if (steps+1)>=lag:
             Autocorrelations.append(correlation(np.array(configs)))
@@ -46,12 +46,12 @@ def autocorrelation(L, T, J, n_steps, lag):
     plt.title('autocorrelation vs MC_time')
     plt.show()
 
-def generate_configurations(L , T, J , n_steps, thermalisation_time, lag):
+def generate_configurations(L , T, J , n_steps, thermalisation_time, lag, MC_step_size=1):
     spins = 2 * pi * randn(L,L) - pi
     makedirs("configurations",exist_ok=True)
     count = 0
     for n in range(n_steps):
-        spins = monte_carlo_step(spins, L, T, J)
+        spins = monte_carlo_step(spins, L, T, J, MC_step_size)
         if n > thermalisation_time and (n)%lag==0:
                 count += 1
                 np.savetxt(path.join("configurations",f"congfig_{count}.csv"),spins.numpy(),delimiter=',')
