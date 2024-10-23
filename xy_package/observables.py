@@ -1,4 +1,4 @@
-from utils import np
+from phyLattice.xy_package.utils import np
 from torch import rand, pi, sum, cos, roll, exp, tensor
 '''
 def compute_energy(spins, L, T, J):
