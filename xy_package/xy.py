@@ -3,7 +3,7 @@ from phyLattice.xy_package.utils import np
 from phyLattice.xy_package.utils import plt
 from torch import randn, pi, sum, cos, roll, exp
 from phyLattice.xy_package.MC_updates import monte_carlo_step
-from phyLattice.xy_package.observables import compute_energy, correlation, specific_heat
+from phyLattice.xy_package.observables import compute_energy, correlation
 
 
 def energy(L ,T, J, n_steps, plot=False, MC_step_size=1):
