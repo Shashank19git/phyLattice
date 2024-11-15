@@ -7,3 +7,5 @@ Python package for Lattice simulations (eg. xy-model, phi^4 theory, gauge theori
 Course Instructor: Vipul Arora
 
 Student : Shashank Sharma
+
+Documentation: file:///Users/shashanksharma/docs/phyLattice.html
