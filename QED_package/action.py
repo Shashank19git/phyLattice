@@ -120,7 +120,7 @@ def conjugate_gradient(a, B, tol=1e-6, maxiter=None):
         p = r + (rsnew / rsold) * p
         rsold = rsnew
 
-    return x.to
+    return x
 
 
 def gauge_action(U, beta, dimension):
