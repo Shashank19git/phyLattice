@@ -98,6 +98,8 @@ def conjugate_gradient(a, B, tol=1e-6, maxiter=None):
         a: Symmetric positive definet matrix
 
          b: vector"""
+    a = a.to('cpu')
+    B = B.to('cpu')
     A = array(a,dtype='complex128')
     b = array(B,dtype='complex128')
     x = zeros(b)
@@ -118,7 +120,7 @@ def conjugate_gradient(a, B, tol=1e-6, maxiter=None):
         p = r + (rsnew / rsold) * p
         rsold = rsnew
 
-    return x
+    return x.to
 
 
 def gauge_action(U, beta, dimension):
